@@ -456,3 +456,6 @@ bower_components
 
 ### WebSharper ###
 Scripts/
+Benchmark/BenchmarkDotNet.Artifacts/results/Program.ParsingBench-report.csv
+Benchmark/BenchmarkDotNet.Artifacts/results/Program.ParsingBench-report-github.md
+Benchmark/BenchmarkDotNet.Artifacts/results/Program.ParsingBench-report.html
