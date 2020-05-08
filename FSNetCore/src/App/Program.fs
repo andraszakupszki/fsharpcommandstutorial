@@ -7,8 +7,9 @@ let printTotalFileBytes path =
         async {
             let! bytes = File.ReadAllBytesAsync(path) |> Async.AwaitTask
             let fileName = Path.GetFileName(path)
-            printfn "File %s has %dbytes" fileName bytes.Length
+            printfn "File %s has %d bytes" fileName bytes.Length
         }
+
 
 [<EntryPoint>]
 let main argv =
@@ -17,8 +18,16 @@ let main argv =
     |> Array.map Library.getJsonNetJson
     |> Array.iter (printfn "%s")
 
-    printTotalFileBytes "App.fsproj"
+    // printTotalFileBytes "App.fsproj"
+    // |> Async.RunSynchronously
+
+    argv
+    |> Array.map printTotalFileBytes
+    //|> Async.Parallel // if we want to execute the function in parallel the output is unreadable
+    |> Async.Sequential
+    |> Async.Ignore
     |> Async.RunSynchronously
+    
     0 // return an integer exit code
 
     
